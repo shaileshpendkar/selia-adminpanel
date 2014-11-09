@@ -1,0 +1,1 @@
+C:\Users\IBM_ADMIN\adminpanel\app/views/dimensions/show.blade.php

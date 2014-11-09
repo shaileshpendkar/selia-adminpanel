@@ -1,0 +1,1 @@
+C:\Users\IBM_ADMIN\adminpanel\app/views/store_locations/show.blade.php
