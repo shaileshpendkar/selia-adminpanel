@@ -49,7 +49,11 @@ class TaxesController extends \BaseController {
 	{
         $input = Input::except('_token');
         // pluck tax id this one is the last input in form will be inserted in store_tax table
-        DB::table('taxes')->insert($input);
+        // DB::table('taxes')->insert($input);
+        Tax::create([
+        	'tax_description' => $input['tax_description'],
+        	'tax_prc' => $input['tax_prc']
+        	]);
         return Redirect::to('taxes');
 	}
 

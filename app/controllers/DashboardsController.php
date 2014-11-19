@@ -17,13 +17,16 @@ class DashboardsController extends \BaseController {
 	 */
 	public function index()
 	{
-
+		// dd('sfsf');
+		Config::set('database.connections.mysql.database', 'storedb_'.Confide::user()->store_control_id);
+    	DB::reconnect();
         $license = DB::select('SELECT numof_devices_licensed,DATE_FORMAT(license_end_date,"%W %M %Y") as license_end_date from selia_control.store_control where store_control_id ='.Confide::user()->store_control_id);
         $sales_today = DB::select('SELECT IFNULL(sum(sub_total),"0.00/-") as sales FROM trns T, invoice I
                                     WHERE DATE(I.ts) = CURDATE() AND
                                     T.store_id = I.store_id AND
                                     T.inv_num = I.inv_num AND
                                     T.inv_type = I.inv_type');
+        // dd(DB::getQueryLog());
         return View::make('reports.dashboard')->with('license',$license)->with('sales_today',$sales_today);
 	}
 
